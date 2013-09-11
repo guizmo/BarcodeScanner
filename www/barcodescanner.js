@@ -25,7 +25,7 @@ BarcodeScanner.Encode = {
 };
 
 //-------------------------------------------------------------------
-BarcodeScanner.prototype.scan = function (successCallback, errorCallback) {
+BarcodeScanner.prototype.scan = function (successCallback, errorCallback, options) {
     if (errorCallback == null) {
         errorCallback = function () {
         }
@@ -40,8 +40,11 @@ BarcodeScanner.prototype.scan = function (successCallback, errorCallback) {
         console.log("BarcodeScanner.scan failure: success callback parameter must be a function");
         return
     }
-
-    cordova.exec(successCallback, errorCallback, 'BarcodeScanner', 'scan', []);
+    
+    if ( null == options )
+    options = []
+    
+    cordova.exec(successCallback, errorCallback, 'BarcodeScanner', 'scan', options);
 };
 
 //-------------------------------------------------------------------
